@@ -22,7 +22,7 @@ services:
       - MYSQL_PASSWORD=12345678
       - MYSQL_USER=user
     volumes:
-      - mysql:/var/lib/mysql
+      - mysqlmyapp:/var/lib/mysql
 
   phpmyadmin:
     container_name: phpmyadmin
@@ -41,4 +41,4 @@ services:
       - PMA_ARBITRARY=1
 
 volumes:
-  mysql:
+  mysqlmyapp:
