@@ -1,18 +1,14 @@
-import math
-from werkzeug.security import generate_password_hash
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, flash, send_from_directory
 from sqlalchemy import MetaData
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_login import current_user
-
+from sqlalchemy.orm.exc import NoResultFound
 
 app = Flask(__name__)
 application = app
 
 app.config.from_pyfile('config.py')
 
-# Работа с БД
 convention = {
     "ix": 'ix_%(column_0_label)s',
     "uq": "uq_%(table_name)s_%(column_0_name)s",
@@ -26,8 +22,13 @@ db = SQLAlchemy(app, metadata=metadata)
 migrate = Migrate(app, db)
 
 from models import *
+
+# Создание БД
 create_models(app)
-# --------------
+
+
+
+
 
 # Blueprint
 from auth import bp as auth_bp, init_login_manager
