@@ -26,10 +26,6 @@ from models import *
 # Создание БД
 create_models(app)
 
-
-
-
-
 # Blueprint
 from auth import bp as auth_bp, init_login_manager
 app.register_blueprint(auth_bp)
