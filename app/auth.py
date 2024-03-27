@@ -62,7 +62,7 @@ def create_user():
             )
             db.session.add(new_user)
             db.session.commit()
-            flash('Вы успешно аутентифицированы.', 'success')
+            flash('Пользователь успешно создан.', 'success')
             return redirect(url_for('index'))
         except:
             flash('Произошла ошибка', 'danger')

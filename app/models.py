@@ -1,9 +1,6 @@
-import os
-import sqlalchemy as sa
-from werkzeug.security import check_password_hash, generate_password_hash
-from flask_login import UserMixin
-from flask import current_app
 from app import db
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 class Users(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -24,9 +21,7 @@ class Users(db.Model, UserMixin):
     @property
     def full_name(self):
         return ' '.join([self.last_name, self.first_name, self.middle_name or ''])
-
-   
-
+    
 def create_models(app):
     with app.app_context():
         db.create_all()
