@@ -1,5 +1,16 @@
 version: '3'
 services:
+  app:
+    container_name: app
+    hostname: app
+    
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    restart: always
+      
   mysql_db:
     container_name: mysql_db
     hostname: mysql_db
@@ -7,28 +18,12 @@ services:
     ports:
       - "32001:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=secret
-      - MYSQL_DATABASE=forapp
-    restart: unless-stopped
-    healthcheck:
-      test: mysqladmin ping -h localhost -u root --password=secret
-      start_period: 5s
-      interval: 5s
-      timeout: 5s
-      retries: 10
+      - MYSQL_ROOT_PASSWORD=password123
+      - MYSQL_DATABASE=app
+      - MYSQL_PASSWORD=password123
+      - MYSQL_USER=mainroot
     volumes:
       - mysql:/var/lib/mysql
-  wsgi_app:
-    container_name: wsgi_app
-    hostname: wsgi_app
-    build: 
-      context: .
-      dockerfile: Dockerfile.service
-    ports:
-      - 80:5000
-    restart: always
-    depends_on:
-      mysql_db:
-        condition: service_healthy
+
 volumes:
   mysql:
