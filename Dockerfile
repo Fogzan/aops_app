@@ -9,8 +9,7 @@ RUN pip install --only-binary :all: greenlet \
     && pip install -r requirements.txt \
     && pip install waitress
 
-RUN dnf install -y pip
-RUN dnf install -y mariadb105-devel gcc python3-devel
+RUN python.exe -m pip install --upgrade pip
 RUN pip install mysqlclient
 
 
