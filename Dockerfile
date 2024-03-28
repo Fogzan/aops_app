@@ -9,7 +9,7 @@ RUN pip install --only-binary :all: greenlet \
     && pip install -r requirements.txt \
     && pip install waitress
 
-RUN python.exe -m pip install --upgrade pip
+RUN apt install mysql-server
 RUN pip install mysqlclient
 
 
