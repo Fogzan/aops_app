@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5000:5000
+    links:
+      - mysql_db
     restart: always
       
   mysql_db:
