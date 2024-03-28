@@ -11,16 +11,16 @@ services:
     restart: always
       
   mysql_db:
+    image: mysql:8.1.0
     container_name: mysql_db
     hostname: mysql_db
-    image: mysql:8.1.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: discounts
     ports:
       - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=12345678
-      - MYSQL_DATABASE=discounts
-      - MYSQL_PASSWORD=12345678
-      - MYSQL_USER=user
+    volumes:
+      - db-data:/var/lib/mysql
 
   phpmyadmin:
     container_name: phpmyadmin
@@ -32,8 +32,10 @@ services:
     ports:
       - 8080:80
     environment:
-      - PMA_HOST=mysql_db
-      - MYSQL_USERNAME=user
-      - MYSQL_ROOT_PASSWORD=12345678
-      - PMA_PORT=3306
-      - PMA_ARBITRARY=1
+      PMA_HOST: mysql_db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: 12345678
+
+volumes:
+  db-data:
