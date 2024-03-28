@@ -34,7 +34,7 @@ services:
     environment:
       PMA_HOST: mysql_db
       PMA_PORT: 3306
-      PMA_USER: root
+      PMA_USER: user
       PMA_PASSWORD: 12345678
 
 volumes:
