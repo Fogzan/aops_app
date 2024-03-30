@@ -18,11 +18,13 @@ services:
     hostname: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABASE: discounts
+      MYSQL_DATABASE: forapp
+      MYSQL_USER: mainroot
+      MYSQL_PASSWORD: 12345678
     ports:
       - 3306:3306
     volumes:
-      - db-data:/var/lib/mysql
+      - forapp:/var/lib/mysql
 
   phpmyadmin:
     container_name: phpmyadmin
@@ -36,8 +38,8 @@ services:
     environment:
       PMA_HOST: mysql_db
       PMA_PORT: 3306
-      PMA_USER: user
+      PMA_USER: mainroot
       PMA_PASSWORD: 12345678
 
 volumes:
-  db-data:
+  forapp:
