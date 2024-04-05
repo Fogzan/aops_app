@@ -25,6 +25,7 @@ services:
       - 3306:3306
     volumes:
       - forapp:/var/lib/mysql
+    restart: always
 
   phpmyadmin:
     container_name: phpmyadmin
